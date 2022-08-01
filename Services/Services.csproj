@@ -14,4 +14,8 @@
     <Folder Include="Validations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Repository\Repository.csproj" />
+  </ItemGroup>
+
 </Project>
