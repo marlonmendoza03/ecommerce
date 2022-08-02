@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Commands
 {
-    public partial class ProductCommandsRepository : ICommandsRepository
+    public partial class ProductCommandsRepository : IRepositoryCommands
     {
         private readonly AppDbContext _appDbContext;
 

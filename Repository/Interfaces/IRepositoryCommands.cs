@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Interfaces
 {
-    public interface ICommandsRepository
+    public interface IRepositoryCommands
     {
         Task AddProduct(Products products);
     }

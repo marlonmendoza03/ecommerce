@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Services.Interfaces
 {
-    public interface ICommandsServices
+    public interface IServiceCommands
     {
         Task<ProductCommandsResponse> AddProduct(ProductCommands productCommands);
     }

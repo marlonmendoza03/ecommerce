@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Commands
 {
-    partial class ProductCommandsRepository : ICommandsRepository
+    partial class ProductCommandsRepository : IRepositoryCommands
     {
         public async Task AddProduct(Products products)
         {

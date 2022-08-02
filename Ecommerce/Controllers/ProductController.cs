@@ -9,11 +9,41 @@ namespace Ecommerce.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly ICommandsServices _commandsServices;
+        private readonly IServiceCommands _commandsServices;
+        private readonly IServiceQueries _serviceQueries;
 
-        public ProductController(ICommandsServices commandsServices)
+        public ProductController(IServiceCommands commandsServices, IServiceQueries serviceQueries)
         {
             _commandsServices = commandsServices;
+            _serviceQueries = serviceQueries;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllProducts()
+        {
+            var response = new GetAllProducts();
+            var products = await _serviceQueries.GetAllProducts();
+            var res = new List<GetAllProductsDTO>();
+            if (products == null)
+            {
+                return null;
+            }
+
+            foreach (var product in products)
+            {
+                res.Add(new GetAllProductsDTO()
+                {
+                    ProductId = product.ProductId,
+                    ProductName = product.ProductName,
+                    ProductDescription = product.ProductName,
+                    ProductPrice = product.ProductPrice,
+                    ProductQuantity = product.ProductQuantity,
+                    DateAdded = product.DateAdded
+                });
+            }
+
+            response.Products = res;
+            return Ok(response);
         }
 
         [HttpPost]

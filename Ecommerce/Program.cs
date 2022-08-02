@@ -32,6 +32,6 @@ void ConfiguredServices(IServiceCollection services)
     services.AddTransient<IRepositoryQueries, RepositoryQuery>();
     services.AddTransient<IServiceQueries, ServiceQueries>();
     services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-    services.AddTransient<ICommandsRepository, ProductCommandsRepository>();
-    services.AddTransient<ICommandsServices, ProductCommandsServices>();
+    services.AddTransient<IRepositoryCommands, ProductCommandsRepository>();
+    services.AddTransient<IServiceCommands, ProductCommandsServices>();
 }

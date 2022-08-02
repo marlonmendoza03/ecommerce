@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Services.Commands
 {
-    public partial class ProductCommandsServices : ICommandsServices
+    public partial class ProductCommandsServices : IServiceCommands
     {
         public async Task<ProductCommandsResponse> AddProduct(ProductCommands productCommands)
         {
@@ -23,24 +23,33 @@ namespace Services.Commands
                 ProductQuantity = productCommands.ProductQuantity,
                 DateAdded = DateTime.Today
             });
+            //product = await ProductResponse(productCommands);
 
-            product = await Response(productCommands);
-            return product;
-        }
-
-        private async Task<ProductCommandsResponse> Response(ProductCommands product)
-        {
-            var result = new ProductCommandsResponse()
+            var response = new ProductCommandsResponse()
             {
-                ProductId = product.ProductId,
-                ProductName = product.ProductName,
-                ProductDescription = product.ProductDescription,
-                ProductPrice = product.ProductPrice,
-                ProductQuantity = product.ProductQuantity,
-                DateAdded = DateTime.Today
+                ProductId = productCommands.ProductId,
+                ProductName = productCommands.ProductName,
+                ProductDescription = productCommands.ProductDescription,
+                ProductPrice = productCommands.ProductPrice,
+                ProductQuantity = productCommands.ProductQuantity,
+                DateAdded = productCommands.DateAdded
             };
 
-            return result;
+            return response;
         }
+        //private async Task<ProductCommandsResponse> ProductResponse(ProductCommands productCommands)
+        //{
+        //    var response = new ProductCommandsResponse()
+        //    {
+        //        ProductId = productCommands.ProductId,
+        //        ProductName = productCommands.ProductName,
+        //        ProductDescription = productCommands.ProductDescription,
+        //        ProductPrice = productCommands.ProductPrice,
+        //        ProductQuantity = productCommands.ProductQuantity,
+        //        DateAdded = productCommands.DateAdded
+        //    };
+
+        //    return response;
+        //}
     }
 }
