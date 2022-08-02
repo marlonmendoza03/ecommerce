@@ -1,6 +1,5 @@
 ﻿using Repository.Interfaces;
 using Services.ServicesDTO;
-
 namespace Services.Queries
 {
     public partial class ServiceQueries
