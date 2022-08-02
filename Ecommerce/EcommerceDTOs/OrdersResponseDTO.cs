@@ -1,14 +1,18 @@
-﻿namespace Ecommerce.EcommerceDTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Ecommerce.EcommerceDTOs
 {
-    public class LogsResponse
+    public class OrdersResponse
     {
-        public List<LogsResponseDTO> Logs { get; set; }
+        public List<OrdersResponseDTO> Orders { get; set; }
     }
-    public class LogsResponseDTO
+    public class OrdersResponseDTO
     {
-        public int LogId { get; set; }
-        public string LogDescription { get; set; }
-        public int AddedBy { get; set; }
-        public DateTime LogDate { get; set; }
+        [Key]
+        public int OrderId { get; set; }
+        public double OrderAmount { get; set; }
+        public int OrderQuanity { get; set; }
+        public int OrderedBy { get; set; }
+        public string OrderDate { get; set; }
     }
 }

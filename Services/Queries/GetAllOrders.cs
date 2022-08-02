@@ -5,7 +5,7 @@ namespace Services.Queries
 {
     public partial class ServiceQueries : IServiceQueries
     {
-        async Task<List<OrdersDTO>> IServiceQueries.GetAllOrders()
+        public async Task<List<OrdersDTO>> GetAllOrders()
         {
             var allOrders = await _repositoryQueries.GetAllOrders();
 

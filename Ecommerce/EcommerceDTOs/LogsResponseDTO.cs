@@ -1,18 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Ecommerce.EcommerceDTOs
+﻿namespace Ecommerce.EcommerceDTOs
 {
-    public class OrdersResponse
+    public class LogsResponse
     {
-        public List<OrdersResponseDTO> Orders { get; set; }
+        public List<LogsResponseDTO> Logs { get; set; }
     }
-    public class OrdersResponseDTO
+    public class LogsResponseDTO
     {
-        [Key]
-        public int OrderId { get; set; }
-        public double OrderAmount { get; set; }
-        public int OrderQuanity { get; set; }
-        public int OrderedBy { get; set; }
-        public string OrderDate { get; set; }
+        public int LogId { get; set; }
+        public string LogDescription { get; set; }
+        public int AddedBy { get; set; }
+        public DateTime LogDate { get; set; }
     }
 }

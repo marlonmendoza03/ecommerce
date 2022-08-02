@@ -5,18 +5,18 @@ namespace Services.Queries
 {
     public partial class ServiceQueries : IServiceQueries
     {
-        async Task<List<LogsDTO>> IServiceQueries.GetAllLogs()
+        public async Task<List<LogsDTO>> GetAllLogs()
         {
             var allLogs = await _repositoryQueries.GetAllLogs();
 
             List<LogsDTO> result = new List<LogsDTO>();
 
-            if(allLogs == null)
+            if (allLogs == null)
             {
                 return null;
             }
 
-            foreach(var logs in allLogs)
+            foreach (var logs in allLogs)
             {
                 result.Add(new LogsDTO()
                 {
