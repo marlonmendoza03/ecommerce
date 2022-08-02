@@ -24,7 +24,23 @@ namespace Services.Commands
                 DateAdded = DateTime.Today
             });
 
+            product = await Response(productCommands);
             return product;
+        }
+
+        private async Task<ProductCommandsResponse> Response(ProductCommands product)
+        {
+            var result = new ProductCommandsResponse()
+            {
+                ProductId = product.ProductId,
+                ProductName = product.ProductName,
+                ProductDescription = product.ProductDescription,
+                ProductPrice = product.ProductPrice,
+                ProductQuantity = product.ProductQuantity,
+                DateAdded = DateTime.Today
+            };
+
+            return result;
         }
     }
 }
