@@ -14,10 +14,8 @@
 
   <ItemGroup>
     <Folder Include="ConnectionHandler\" />
+    <Folder Include="Commands\" />
     <Folder Include="ConnectionHandler\" />
-    <Folder Include="Queries\" />
-    <Folder Include="RepositoryDTO\" />
-    <Folder Include="Queries\" />
   </ItemGroup>
 
   <ItemGroup>
