@@ -12,8 +12,8 @@ using Repository.DataContext;
 namespace Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220801101526_initialmigration")]
-    partial class initialmigration
+    [Migration("20220802060054_E-Commerce")]
+    partial class ECommerce
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

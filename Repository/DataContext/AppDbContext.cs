@@ -15,3 +15,4 @@ namespace Repository.DataContext
         public DbSet<Logs> logs { get; set; }
     }
 }
+
