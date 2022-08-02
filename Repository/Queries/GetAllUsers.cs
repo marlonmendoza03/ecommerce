@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Repository.ConnectionHandler;
 using Repository.Interfaces;
 using Repository.RepositoryDTO;
 
@@ -8,7 +9,18 @@ namespace Repository.Queries
     {
         public async Task<List<Users>> GetAllUsers()
         {
-            return await _dbContext.users.ToListAsync();
+            try
+            {
+                return await _dbContext.users.ToListAsync();
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                CloseConnection.DisposeConnection();
+            }
         }
     }
 }
