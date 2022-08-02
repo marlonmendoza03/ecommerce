@@ -14,9 +14,7 @@
 
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="ConnectionHandler\" />
     <Folder Include="Commands\" />
-    <Folder Include="ConnectionHandler\" />
   </ItemGroup>
 
   <ItemGroup>
