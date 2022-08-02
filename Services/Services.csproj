@@ -12,10 +12,6 @@
     <Folder Include="Commands\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Validations\" />
-    <Folder Include="ServicesDTO\" />
-    <Folder Include="Queries\" />
-    <Folder Include="ServicesDTO\" />
-    <Folder Include="Queries\" />
     <Folder Include="Validations\" />
   </ItemGroup>
 
