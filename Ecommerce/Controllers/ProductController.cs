@@ -1,11 +1,12 @@
 ﻿using Ecommerce.EcommerceDTOs;
+using Ecommerce.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 using Services.ServicesDTO;
 
 namespace Ecommerce.Controllers
 {
-    [Route("/[controller]")]
+    [Route("products")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -21,9 +22,10 @@ namespace Ecommerce.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllProducts()
         {
-            var response = new GetAllProducts();
             var products = await _serviceQueries.GetAllProducts();
-            var res = new List<GetAllProductsDTO>();
+            var response = new ProductsResponse();
+            List<ProductsResponseDTO> result = new List<ProductsResponseDTO>();
+
             if (products == null)
             {
                 return null;
@@ -31,24 +33,31 @@ namespace Ecommerce.Controllers
 
             foreach (var product in products)
             {
-                res.Add(new GetAllProductsDTO()
+                result.Add(new ProductsResponseDTO()
                 {
                     ProductId = product.ProductId,
                     ProductName = product.ProductName,
                     ProductDescription = product.ProductName,
                     ProductPrice = product.ProductPrice,
                     ProductQuantity = product.ProductQuantity,
-                    DateAdded = product.DateAdded
+                    DateAdded = DateTime.Now.ToString("MM/dd/yyyy")
                 });
             }
 
-            response.Products = res;
+            response.Products = result;
             return Ok(response);
         }
 
         [HttpPost]
         public async Task<IActionResult> AddProduct([FromBody] ProductRequest productRequest)
         {
+            CustomResponse customResponse = new CustomResponse();
+
+            if (productRequest == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
             var productCommands = new ProductCommands()
             {
                 ProductName = productRequest.ProductName,
@@ -59,6 +68,16 @@ namespace Ecommerce.Controllers
 
             var result = await _commandsServices.AddProduct(productCommands);
 
+            if (result == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            if (result.ResultMessage == "Server Error")
+            {
+                return customResponse.ServerErrorResponse();
+            }
+
             var response = new ProductResponse()
             {
                 ProductId = result.ProductId,
@@ -66,7 +85,7 @@ namespace Ecommerce.Controllers
                 ProductDescription = result.ProductDescription,
                 ProductPrice = result.ProductPrice,
                 ProductQuantity = result.ProductQuantity,
-                DateAdded = DateTime.Today
+                DateAdded = result.DateAdded
             };
 
             return Ok(response);

@@ -9,6 +9,6 @@ namespace Repository.Interfaces
 {
     public interface IRepositoryCommands
     {
-        Task AddProduct(Products products);
+        Task<RepositoryResponse> AddProduct(Products products);
     }
 }

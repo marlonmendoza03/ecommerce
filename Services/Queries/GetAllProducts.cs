@@ -7,25 +7,28 @@ namespace Services.Queries
     {
         public async Task<List<ProductsDTO>> GetAllProducts()
         {
-            var displayAllProducts = await _repositoryQueries.GetAllProductDetails();
-            List<ProductsDTO> products = new List<ProductsDTO>();
-            if (displayAllProducts == null)
+            var allProducts = await _repositoryQueries.GetAllProducts();
+
+            List<ProductsDTO> result = new List<ProductsDTO>();
+
+            if (allProducts == null)
             {
                 return null;
             }
-            foreach (var product in displayAllProducts)
+
+            foreach (var product in allProducts)
             {
-                products.Add(new ProductsDTO()
+                result.Add(new ProductsDTO()
                 {
                     ProductId = product.ProductId,
                     ProductName = product.ProductName,
                     ProductDescription = product.ProductDescription,
                     ProductPrice = product.ProductPrice,
                     ProductQuantity = product.ProductQuantity,
-                    DateAdded = product.DateAdded
+                    DateAdded = product.DateAdded.Date.ToString("MM/dd/yyyy")
                 });
             }
-            return products;
+            return result;
         }
     }
 }

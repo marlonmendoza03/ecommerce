@@ -1,4 +1,5 @@
-﻿using Repository.Interfaces;
+﻿using Repository.ConnectionHandler;
+using Repository.Interfaces;
 using Repository.RepositoryDTO;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,25 @@ namespace Repository.Commands
 {
     partial class ProductCommandsRepository : IRepositoryCommands
     {
-        public async Task AddProduct(Products products)
+        public async Task<RepositoryResponse> AddProduct(Products products)
         {
-            await _appDbContext.AddAsync(products);
-            await SaveChangesAsync();
+            var response = new RepositoryResponse();
+            try
+            {
+                await _appDbContext.AddAsync(products);
+                await SaveChangesAsync();
+
+                response.ResultMessage = "Success";
+            }
+            catch (Exception)
+            {
+                response.ResultMessage = "Server Error";
+            }
+            finally
+            {
+                CloseConnection.DisposeConnection();
+            }
+            return response;
         }
     }
 }

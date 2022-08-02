@@ -1,6 +1,7 @@
 ﻿using Repository.RepositoryDTO;
 using Services.Interfaces;
 using Services.ServicesDTO;
+using Services.Validations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,42 +15,40 @@ namespace Services.Commands
         public async Task<ProductCommandsResponse> AddProduct(ProductCommands productCommands)
         {
             var product = new ProductCommandsResponse();
-            
-            await _commandsRepository.AddProduct(new Products()
+            var serverErrorMsg = "Server Error";
+            try
             {
-                ProductName = productCommands.ProductName,
-                ProductDescription = productCommands.ProductDescription,
-                ProductPrice = productCommands.ProductPrice,
-                ProductQuantity = productCommands.ProductQuantity,
-                DateAdded = DateTime.Today
-            });
-            //product = await ProductResponse(productCommands);
+                var validation = await DataValidation.AddResponseValidation(_repositoryQueries, productCommands);
 
-            var response = new ProductCommandsResponse()
+                if (validation == null)
+                {
+                    return null;
+                }
+
+                var response = await _commandsRepository.AddProduct(new Products()
+                {
+                    ProductName = productCommands.ProductName,
+                    ProductDescription = productCommands.ProductDescription,
+                    ProductPrice = productCommands.ProductPrice,
+                    ProductQuantity = productCommands.ProductQuantity,
+                    DateAdded = DateTime.Now
+                });
+
+                if (response.ResultMessage == serverErrorMsg)
+                {
+                    product.ResultMessage = serverErrorMsg;
+                    return product;
+                }
+
+                product = await ProductResponse(productCommands);
+                product.ResultMessage = "Success";
+            }
+            catch (Exception)
             {
-                ProductId = productCommands.ProductId,
-                ProductName = productCommands.ProductName,
-                ProductDescription = productCommands.ProductDescription,
-                ProductPrice = productCommands.ProductPrice,
-                ProductQuantity = productCommands.ProductQuantity,
-                DateAdded = productCommands.DateAdded
-            };
-
-            return response;
+                product.ResultMessage = serverErrorMsg;
+            }
+           
+            return product;
         }
-        //private async Task<ProductCommandsResponse> ProductResponse(ProductCommands productCommands)
-        //{
-        //    var response = new ProductCommandsResponse()
-        //    {
-        //        ProductId = productCommands.ProductId,
-        //        ProductName = productCommands.ProductName,
-        //        ProductDescription = productCommands.ProductDescription,
-        //        ProductPrice = productCommands.ProductPrice,
-        //        ProductQuantity = productCommands.ProductQuantity,
-        //        DateAdded = productCommands.DateAdded
-        //    };
-
-        //    return response;
-        //}
     }
 }

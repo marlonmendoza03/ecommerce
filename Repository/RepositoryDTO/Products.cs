@@ -13,7 +13,7 @@ namespace Repository.RepositoryDTO
         [Column("product_description")]
         public string? ProductDescription { get; set; }
         [Column("product_price")]
-        public double ProductPrice { get; set; }
+        public float ProductPrice { get; set; }
         [Column("product_quantity")]
         public int ProductQuantity { get; set; }
         [Column("product_image_1")]

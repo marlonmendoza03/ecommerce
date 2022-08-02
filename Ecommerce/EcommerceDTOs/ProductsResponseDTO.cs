@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Services.ServicesDTO
+namespace Ecommerce.EcommerceDTOs
 {
-    public class ProductsDTO
+    public class ProductsResponse
+    {
+        public List<ProductsResponseDTO> Products { get; set; }
+    }
+
+    public class ProductsResponseDTO
     {
         [Key]
         public int ProductId { get; set; }
-
         public string? ProductName { get; set; }
-
         public string? ProductDescription { get; set; }
-
         public float ProductPrice { get; set; }
-
         public int ProductQuantity { get; set; }
-
-        public string? DateAdded { get; set; }
+        public string DateAdded { get; set; }
     }
 }

@@ -4,7 +4,7 @@
     {
         public string? ProductName { get; set; }
         public string? ProductDescription { get; set; }
-        public double ProductPrice { get; set; }
+        public float ProductPrice { get; set; }
         public int ProductQuantity { get; set; }
     }
 }

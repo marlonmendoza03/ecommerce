@@ -19,5 +19,22 @@ namespace Services.Commands
             _commandsRepository = commandsRepository;
             _repositoryQueries = repositoryQueries;
         }
+
+        private async Task<ProductCommandsResponse> ProductResponse(ProductCommands productCommands)
+        {
+            var res = await _repositoryQueries.GetProductwithName(productCommands.ProductName);
+
+            var response = new ProductCommandsResponse()
+            {
+                ProductId = res.ProductId,
+                ProductName = res.ProductName,
+                ProductDescription = res.ProductDescription,
+                ProductPrice = res.ProductPrice,
+                ProductQuantity = res.ProductQuantity,
+                DateAdded = res.DateAdded.Date.ToString("MM/dd/yyyy")
+            };
+
+            return response;
+        }
     }
 }

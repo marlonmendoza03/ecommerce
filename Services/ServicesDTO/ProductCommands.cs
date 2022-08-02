@@ -16,7 +16,7 @@ namespace Services.ServicesDTO
 
         public string? ProductDescription { get; set; }
 
-        public double ProductPrice { get; set; }
+        public float ProductPrice { get; set; }
 
         public int ProductQuantity { get; set; }
 
