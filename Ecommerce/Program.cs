@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Repository.Commands;
 using Repository.DataContext;
+using Repository.Interfaces;
+using Services.Commands;
+using Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -24,4 +28,6 @@ app.Run();
 void ConfiguredServices(IServiceCollection services)
 {
     services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+    services.AddTransient<ICommandsRepository, ProductCommandsRepository>();
+    services.AddTransient<ICommandsServices, ProductCommandsServices>();
 }

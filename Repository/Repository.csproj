@@ -13,12 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
     <Folder Include="ConnectionHandler\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Commands\" />
     <Folder Include="ConnectionHandler\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Queries\" />
     <Folder Include="RepositoryDTO\" />
     <Folder Include="Queries\" />
