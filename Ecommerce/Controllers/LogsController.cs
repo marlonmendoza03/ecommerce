@@ -20,12 +20,12 @@ namespace Ecommerce.Controllers
             var response = new LogsResponse();
             var logs = await _serviceQueries.GetAllLogs();
             var logsResponse = new List<LogsResponseDTO>();
-            if(logs == null)
+            if (logs == null)
             {
                 return null;
             }
 
-            foreach(var logItems in logs)
+            foreach (var logItems in logs)
             {
                 logsResponse.Add(new LogsResponseDTO()
                 {

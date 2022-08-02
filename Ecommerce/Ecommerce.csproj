@@ -21,13 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="EcommerceDTOs\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="EcommerceDTOs\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
