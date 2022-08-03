@@ -5,6 +5,7 @@ using Repository.Interfaces;
 using Repository.Queries;
 using Services.Commands;
 using Services.Interfaces;
+using Services.Login;
 using Services.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,12 +24,23 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseSession();
+
 app.MapControllers();
 
 app.Run();
 
 void ConfiguredServices(IServiceCollection services)
 {
+    services.AddDistributedMemoryCache();
+    services.AddHttpContextAccessor();
+    services.AddSession(option =>
+    {
+        option.IdleTimeout = TimeSpan.FromMinutes(30);
+        option.Cookie.HttpOnly = true;
+    });
+    services.AddTransient<ILoginRepositoryQuery, GetUserPassword>();
+    services.AddTransient<ILoginServiceCommands, LoginServiceCommands>();
     services.AddTransient<IRepositoryQueries, RepositoryQuery>();
     services.AddTransient<IServiceQueries, ServiceQueries>();
     services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
