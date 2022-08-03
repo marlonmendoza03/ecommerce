@@ -7,5 +7,7 @@ namespace Repository.Interfaces
         Task<List<Users>> GetAllUsers();
         Task<List<Logs>> GetAllLogs();
         Task<List<Orders>> GetAllOrders();
+        Task<List<Products>> GetAllProducts();
+        Task<ProductDetails> GetProductwithName(string productName);
     }
 }

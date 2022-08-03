@@ -6,5 +6,6 @@ namespace Services.Interfaces
     {
         Task<List<LogsDTO>> GetAllLogs();
         Task<List<OrdersDTO>> GetAllOrders();
+        Task<List<ProductsDTO>> GetAllProducts();
     }
 }
