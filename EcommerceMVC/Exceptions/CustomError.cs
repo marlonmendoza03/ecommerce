@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
 
-namespace Ecommerce.Exceptions
+namespace EcommerceMVC.Exceptions
 {
     public class CustomErrors
     {

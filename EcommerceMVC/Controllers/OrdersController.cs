@@ -1,11 +1,11 @@
-﻿using Ecommerce.EcommerceDTOs;
+﻿using EcommerceMVC.EcommerceDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 
-namespace Ecommerce.Controllers
+namespace EcommerceMVC.Controllers
 {
     [Route("orders")]
-    public class OrdersController : ControllerBase
+    public class OrdersController : Controller
     {
         private readonly IServiceQueries _serviceQueries;
 

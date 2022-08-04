@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.EcommerceDTOs
+﻿namespace EcommerceMVC.EcommerceDTOs
 {
     public class LoginResponse
     {

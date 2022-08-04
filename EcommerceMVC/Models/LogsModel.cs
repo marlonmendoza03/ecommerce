@@ -1,10 +1,10 @@
-﻿namespace Ecommerce.EcommerceDTOs
+﻿namespace EcommerceMVC.EcommerceDTOs
 {
-    public class LogsResponse
+    public class LogsResponseModel
     {
-        public List<LogsResponseDTO> Logs { get; set; }
+        public List<LogsModel> Logs { get; set; }
     }
-    public class LogsResponseDTO
+    public class LogsModel
     {
         public int LogId { get; set; }
         public string LogDescription { get; set; }
