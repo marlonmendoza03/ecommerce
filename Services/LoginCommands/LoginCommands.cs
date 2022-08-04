@@ -6,16 +6,16 @@ namespace Services.Login
 {
     public partial class LoginServiceCommands : ILoginServiceCommands
     {
-        private readonly ILoginRepositoryQuery _productRepositoryQueries;
+        private readonly ILoginRepositoryQuery _loginRepositoryQuery;
 
-        public LoginServiceCommands(ILoginRepositoryQuery productRepositoryQueries)
+        public LoginServiceCommands(ILoginRepositoryQuery loginRepositoryQuery)
         {
-            _productRepositoryQueries = productRepositoryQueries;
+            _loginRepositoryQuery = loginRepositoryQuery;
         }
 
         private async Task<LoginResponse> MapLoginResponse(UserDTO userDTO)
         {
-            var user = await _productRepositoryQueries.GetUserWithUsernameAndPassword(userDTO.username, userDTO.password);
+            var user = await _loginRepositoryQuery.GetUserWithUsernameAndPassword(userDTO.username, userDTO.password);
 
             var result = new LoginResponse()
             {

@@ -18,7 +18,7 @@ namespace Services.Login
 
             try
             {
-            var user = await _productRepositoryQueries.GetUserWithUsernameAndPassword(userDTO.username.ToLower(), userDTO.password);
+            var user = await _loginRepositoryQuery.GetUserWithUsernameAndPassword(userDTO.username.ToLower(), userDTO.password);
             if (user != null || user.isActive == true)
             {
                 if (user.username.ToLower() == userDTO.username.ToLower() && user.password == user.password)
