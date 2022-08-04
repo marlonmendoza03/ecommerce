@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Ecommerce.Exceptions
+namespace EcommerceMVC.Exceptions
 {
     public class CustomResponse : ControllerBase
     {

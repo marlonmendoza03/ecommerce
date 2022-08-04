@@ -1,14 +1,14 @@
-﻿using Ecommerce.EcommerceDTOs;
-using Ecommerce.Exceptions;
+﻿using EcommerceMVC.EcommerceDTOs;
+using EcommerceMVC.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 using Services.ServicesDTO;
 
-namespace Ecommerce.Controllers
+namespace EcommerceMVC.Controllers
 {
     [Route("login")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class LoginController : Controller
     {
         private readonly ILoginServiceCommands _loginServiceCommands;
 
