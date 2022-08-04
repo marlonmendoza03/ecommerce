@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 
-namespace EcommerceMVC.Controllers
+namespace Ecommerce.Controllers
 {
     [Route("orders")]
-    public class OrdersController : Controller
+    public class OrdersController : ControllerBase
     {
         private readonly IServiceQueries _serviceQueries;
 
