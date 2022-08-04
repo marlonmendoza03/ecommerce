@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 
-namespace EcommerceMVC.Controllers
+namespace Ecommerce.Controllers
 {
     [Route("orders")]
     public class OrdersController : Controller
@@ -15,7 +15,7 @@ namespace EcommerceMVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllOrders()
+        public async Task<IActionResult> Orders()
         {
             var orders = await _serviceQueries.GetAllOrders();
             var response = new OrdersResponse();
@@ -39,7 +39,7 @@ namespace EcommerceMVC.Controllers
             }
 
             response.Orders = result;
-            return Ok(response);
+            return View(response);
         }
     }
 }

@@ -7,7 +7,6 @@ using Services.ServicesDTO;
 namespace EcommerceMVC.Controllers
 {
     [Route("login")]
-    [ApiController]
     public class LoginController : Controller
     {
         private readonly ILoginServiceCommands _loginServiceCommands;
@@ -68,6 +67,11 @@ namespace EcommerceMVC.Controllers
                 SessionUsername = username
             };
             return Ok(response);
+        }
+
+        public IActionResult Login()
+        {
+            return View();
         }
     }
 }
