@@ -9,5 +9,6 @@ namespace Repository.Interfaces
         Task<List<Orders>> GetAllOrders();
         Task<List<Products>> GetAllProducts();
         Task<ProductDetails> GetProductwithName(string productName);
+        Task<ProductReponse> GetProductById(int id);
     }
 }

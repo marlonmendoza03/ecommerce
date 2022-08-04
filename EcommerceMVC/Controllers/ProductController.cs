@@ -90,5 +90,34 @@ namespace Ecommerce.Controllers
 
             return Ok(response);
         }
+        [Route("{id}")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var Product = new ProductCommands();
+            CustomResponse customResponse = new CustomResponse();
+
+            if (id == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            Product.ProductId = id;
+
+            var result = await _commandsServices.DeleteProduct(Product);
+
+            if (result == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            if (result.ResultMessage == "Server Error")
+            {
+                return customResponse.ServerErrorResponse();
+            }
+
+            return Ok();
+        }
+
     }
 }
