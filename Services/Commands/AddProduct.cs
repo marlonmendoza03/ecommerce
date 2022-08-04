@@ -31,7 +31,8 @@ namespace Services.Commands
                     ProductDescription = productCommands.ProductDescription,
                     ProductPrice = productCommands.ProductPrice,
                     ProductQuantity = productCommands.ProductQuantity,
-                    DateAdded = DateTime.Now
+                    DateAdded = DateTime.Now,
+                    IsActive = true
                 });
 
                 if (response.ResultMessage == serverErrorMsg)

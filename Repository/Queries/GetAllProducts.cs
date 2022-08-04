@@ -11,7 +11,7 @@ namespace Repository.Queries
         {
             try
             {
-                return await _dbContext.products.ToListAsync();
+                return await _dbContext.products.Where(x => x.IsActive == true).ToListAsync();
             }
             catch (Exception)
             {
@@ -41,7 +41,8 @@ namespace Repository.Queries
                                   ProductDescription = p.ProductDescription,
                                   ProductPrice = p.ProductPrice,
                                   ProductQuantity = p.ProductQuantity,
-                                  DateAdded = p.DateAdded
+                                  DateAdded = p.DateAdded,
+                                  IsActive = p.IsActive
                               }).FirstOrDefaultAsync();
 
             return response;

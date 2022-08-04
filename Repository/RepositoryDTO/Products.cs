@@ -24,5 +24,7 @@ namespace Repository.RepositoryDTO
         public string? ProductImage3 { get; set; }
         [Column("date_added")]
         public DateTime DateAdded { get; set; }
+        [Column("isActive")]
+        public bool IsActive { get; set; }
     }
 }
