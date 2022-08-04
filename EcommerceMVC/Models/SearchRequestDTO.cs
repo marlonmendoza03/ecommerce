@@ -1,4 +1,4 @@
-﻿namespace EcommerceMVC.EcommerceDTOs
+﻿namespace EcommerceMVC.Models
 {
     public class SearchRequestDTO
     {
