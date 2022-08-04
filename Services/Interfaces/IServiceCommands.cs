@@ -10,5 +10,6 @@ namespace Services.Interfaces
     public interface IServiceCommands
     {
         Task<ProductCommandsResponse> AddProduct(ProductCommands productCommands);
+        Task<ProductCommandsResponse> UpdateProduct(ProductCommands productCommands);
     }
 }
