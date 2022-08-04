@@ -27,7 +27,7 @@ namespace Repository.Queries
         {
             var response = new ProductDetails();
 
-            if(productName == null)
+            if (productName == null)
             {
                 return null;
             }
@@ -45,6 +45,44 @@ namespace Repository.Queries
                               }).FirstOrDefaultAsync();
 
             return response;
+        }
+
+        public async Task<List<ProductDetails>> GetProductWithProductNameAndDesctiption(string? productName, string? productDescription)
+        {
+            var productChecker = await _dbContext.products.FirstOrDefaultAsync(x => x.ProductName.ToLower() == productName && x.ProductDescription == productDescription);
+
+            if (productChecker == null)
+            {
+                return null;
+            }
+
+            if (string.IsNullOrEmpty(productName) && string.IsNullOrEmpty(productDescription))
+            {
+                return null;
+            }
+            try
+            {
+                var query = from p in _dbContext.products
+                            where (!string.IsNullOrEmpty(productName) && p.ProductName.ToLower().Contains(productName.ToLower()) || (!string.IsNullOrEmpty(productDescription) && p.ProductDescription.ToLower().Contains(productDescription.ToLower())))
+                            select new ProductDetails
+                            {
+                                ProductId = p.ProductId,
+                                ProductName = p.ProductName,
+                                ProductDescription = p.ProductDescription,
+                                ProductPrice = p.ProductPrice,
+                                ProductQuantity = p.ProductQuantity,
+                                DateAdded = p.DateAdded
+                            };
+                return await query.ToListAsync();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            finally
+            {
+                CloseConnection.DisposeConnection();
+            }
         }
     }
 }

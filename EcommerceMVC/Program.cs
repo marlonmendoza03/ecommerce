@@ -41,6 +41,7 @@ void ConfiguredServices(IServiceCollection services)
     });
     services.AddTransient<ILoginRepositoryQuery, GetUserPassword>();
     services.AddTransient<ILoginServiceCommands, LoginServiceCommands>();
+    services.AddTransient<ISearchProductService, SearchProductService>();
     services.AddTransient<IRepositoryQueries, RepositoryQuery>();
     services.AddTransient<IServiceQueries, ServiceQueries>();
     services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
