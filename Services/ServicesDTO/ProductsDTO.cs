@@ -21,5 +21,6 @@ namespace Services.ServicesDTO
         public int ProductQuantity { get; set; }
 
         public string? DateAdded { get; set; }
+        public bool IsActive { get; set; }
     }
 }
