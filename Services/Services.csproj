@@ -8,9 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Commands\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Validations\" />
     <Folder Include="Validations\" />
   </ItemGroup>
