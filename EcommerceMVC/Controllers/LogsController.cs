@@ -14,11 +14,6 @@ namespace EcommerceMVC.Controllers
             _serviceQueries = serviceQueries;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public async Task<IActionResult> Logs()
         {
