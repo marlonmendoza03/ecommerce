@@ -94,7 +94,7 @@ namespace EcommerceMVC.Controllers
 
         [Route("{id}")]
         [HttpPut]
-        public async Task<IActionResult> UpdateCommunity(int id, [FromBody] UpdateProductRequest updateProductRequest)
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductRequest updateProductRequest)
         {
             CustomResponse customResponse = new CustomResponse();
 
