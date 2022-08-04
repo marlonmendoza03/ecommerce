@@ -1,0 +1,27 @@
+﻿@model EcommerceMVC.EcommerceDTOs.OrdersResponse
+@{
+    ViewData["Title"] = "Orders";
+}
+<h1>@ViewData["Title"]</h1>
+
+<center>
+<table class="table table-bordered table-responsive-md table-hover">
+    <tr>
+        <th class="row-cols-3">Order Id</th>
+        <th class="row-cols-3">Total Amount</th>
+        <th class="row-cols-3">Order Quantity</th>
+        <th class="row-cols-3">Ordered By</th>
+        <th class="row-cols-3">Date</th>
+    </tr>
+    @foreach(var logs in @Model.Orders)
+    {
+    <tr>
+        <td class="row-cols-3">@logs.OrderId</td>
+        <td class="row-cols-3">@logs.OrderAmount</td>
+        <td class="row-cols-3">@logs.OrderQuanity</td>
+        <td class="row-cols-3">@logs.OrderedBy</td>
+        <td class="row-cols-3">@logs.OrderDate</td>
+    </tr>
+    }
+</table>
+</center>
