@@ -5,13 +5,18 @@ using Services.Interfaces;
 namespace Ecommerce.Controllers
 {
     [Route("logs")]
-    public class LogsController : ControllerBase
+    public class LogsController : Controller
     {
         private readonly IServiceQueries _serviceQueries;
 
         public LogsController(IServiceQueries serviceQueries)
         {
             _serviceQueries = serviceQueries;
+        }
+
+        public IActionResult Index()
+        {
+            return View();
         }
 
         [HttpGet]
