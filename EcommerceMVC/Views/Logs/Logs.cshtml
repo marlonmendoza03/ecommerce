@@ -1,0 +1,28 @@
+﻿@model EcommerceMVC.EcommerceDTOs.LogsResponseModel
+
+@{
+    ViewData["Title"] = "Logs";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Logs:</p>
+
+<center>
+<table class="table table-bordered table-responsive-md table-hover">
+    <tr>
+        <th class="row-cols-3">Log Id</th>
+        <th class="row-cols-3">Log Description</th>
+        <th class="row-cols-3">Added By</th>
+        <th class="row-cols-3">Log Date</th>
+    </tr>
+    @foreach(var logs in @Model.Logs)
+    {
+    <tr>
+        <td class="row-cols-3">@logs.LogId</td>
+        <td class="row-cols-3">@logs.LogDescription</td>
+        <td class="row-cols-3">@logs.AddedBy</td>
+        <td class="row-cols-3">@logs.LogDate</td>
+    </tr>
+    }
+</table>
+</center>

@@ -25,6 +25,19 @@ namespace Services.Validations
 
             return product;
         }
+
+        public static async Task<ProductCommandsResponse> SearchProductValidation(IRepositoryQueries repositoryQueries, SearchProductDetails searchProductDetails)
+        { 
+            var productCommandResponse = new ProductCommandsResponse();
+            var products = await repositoryQueries.GetAllProducts();
+            bool productChecker = products.Any(x => x.ProductName.ToLower() == searchProductDetails.ProductName.ToLower() && x.ProductDescription.ToLower() == searchProductDetails.ProductDescription.ToLower());
+
+            if (productChecker == null)
+            {
+                return null;
+            }
+            return productCommandResponse; 
+        }
         public static async Task<ProductCommandsResponse> UpdateValidation(IRepositoryQueries repositoryQueries, ProductCommands productCommands)
         {
             var product = new ProductCommandsResponse();
