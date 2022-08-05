@@ -38,5 +38,21 @@ namespace Services.Validations
             }
             return productCommandResponse; 
         }
+
+        public static async Task<ProductCommandsResponse> DeleteProductValidation(IRepositoryQueries repositoryQueries, ProductCommands productCommands)
+        {
+            var product = new ProductCommandsResponse();
+
+            var products = await repositoryQueries.GetAllProducts();
+
+            bool activeStatus = products.Where(x => x.ProductId == productCommands.ProductId).Select(x => x.IsActive).FirstOrDefault();
+
+            if (activeStatus == false)
+            {
+                return null;
+            };
+
+            return product;
+        }
     }
 }

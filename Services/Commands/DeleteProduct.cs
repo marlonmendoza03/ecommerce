@@ -14,7 +14,7 @@ namespace Services.Commands
 
             try
             {
-                var productDataExists = await DataValidation.DeleteResponseValidation(_repositoryQueries, request);
+                var productDataExists = await DataValidation.DeleteProductValidation(_repositoryQueries, request);
 
                 if (productDataExists == null)
                 {

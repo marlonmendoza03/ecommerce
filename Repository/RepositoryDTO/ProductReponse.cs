@@ -12,5 +12,6 @@
         public string? ProductImage3 { get; set; }
         public DateTime DateAdded { get; set; }
         public string? ResultMessage { get; set; }
+        public bool isActive { get; set; }
     }
 }
