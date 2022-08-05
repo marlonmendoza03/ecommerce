@@ -21,7 +21,7 @@ namespace EcommerceMVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllProducts()
+        public async Task<IActionResult> Products()
         {
             var products = await _serviceQueries.GetAllProducts();
             var response = new ProductsResponse();
@@ -46,10 +46,11 @@ namespace EcommerceMVC.Controllers
             }
 
             response.Products = result;
-            return Ok(response);
+            //return Ok(response);
+            return View(response);
         }
 
-        [HttpPost]
+        [HttpPost("addproduct")]
         public async Task<IActionResult> AddProduct([FromBody] ProductRequest productRequest)
         {
             CustomResponse customResponse = new CustomResponse();
