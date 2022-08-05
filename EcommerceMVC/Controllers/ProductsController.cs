@@ -1,4 +1,5 @@
-﻿using EcommerceMVC.EcommerceDTOs;
+﻿using Ecommerce.EcommerceDTOs;
+using EcommerceMVC.EcommerceDTOs;
 using EcommerceMVC.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
@@ -67,6 +68,51 @@ namespace EcommerceMVC.Controllers
             };
 
             var result = await _commandsServices.AddProduct(productCommands);
+
+            if (result == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            if (result.ResultMessage == "Server Error")
+            {
+                return customResponse.ServerErrorResponse();
+            }
+
+            var response = new ProductResponse()
+            {
+                ProductId = result.ProductId,
+                ProductName = result.ProductName,
+                ProductDescription = result.ProductDescription,
+                ProductPrice = result.ProductPrice,
+                ProductQuantity = result.ProductQuantity,
+                DateAdded = result.DateAdded
+            };
+
+            return Ok(response);
+        }
+
+        [Route("{id}")]
+        [HttpPut]
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductRequest updateProductRequest)
+        {
+            CustomResponse customResponse = new CustomResponse();
+
+            if (id != updateProductRequest.ProductId)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            var productCommands = new ProductCommands()
+            {
+                ProductId = id,
+                ProductName = updateProductRequest.ProductName,
+                ProductDescription = updateProductRequest.ProductDescription,
+                ProductPrice = updateProductRequest.ProductPrice,
+                ProductQuantity = updateProductRequest.ProductQuantity
+            };
+
+            var result = await _commandsServices.UpdateProduct(productCommands);
 
             if (result == null)
             {
