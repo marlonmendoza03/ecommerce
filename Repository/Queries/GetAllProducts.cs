@@ -11,7 +11,7 @@ namespace Repository.Queries
         {
             try
             {
-                return await _dbContext.products.ToListAsync();
+                return await _dbContext.products.Where(x => x.IsActive == true).ToListAsync();
             }
             catch (Exception)
             {
@@ -27,7 +27,7 @@ namespace Repository.Queries
         {
             var response = new ProductDetails();
 
-            if(productName == null)
+            if (productName == null)
             {
                 return null;
             }
@@ -41,38 +41,49 @@ namespace Repository.Queries
                                   ProductDescription = p.ProductDescription,
                                   ProductPrice = p.ProductPrice,
                                   ProductQuantity = p.ProductQuantity,
-                                  DateAdded = p.DateAdded
+                                  DateAdded = p.DateAdded,
+                                  IsActive = p.IsActive
                               }).FirstOrDefaultAsync();
 
             return response;
         }
 
-        public async Task<ProductReponse> GetProductById(int id)
+        public async Task<List<ProductDetails>> GetProductWithProductNameAndDesctiption(string? productName, string? productDescription)
         {
-            var response = new ProductReponse();
+            var productChecker = await _dbContext.products.FirstOrDefaultAsync(x => x.ProductName.ToLower() == productName && x.ProductDescription == productDescription);
+
+            if (productChecker == null)
+            {
+                return null;
+            }
+
+            if (string.IsNullOrEmpty(productName) && string.IsNullOrEmpty(productDescription))
+            {
+                return null;
+            }
             try
             {
-                var result = await _dbContext.products.Where(x => x.ProductId == id).FirstOrDefaultAsync();
-                response = new ProductReponse()
-                {
-                    ProductId = result.ProductId,
-                    ProductName = result.ProductName,
-                    ProductDescription = result.ProductDescription,
-                    ProductPrice = result.ProductPrice,
-                    ProductQuantity = result.ProductQuantity
-                };
-
-                response.ResultMessage = "Success";
+                var query = from p in _dbContext.products
+                            where (!string.IsNullOrEmpty(productName) && p.ProductName.ToLower().Contains(productName.ToLower()) || (!string.IsNullOrEmpty(productDescription) && p.ProductDescription.ToLower().Contains(productDescription.ToLower())))
+                            select new ProductDetails
+                            {
+                                ProductId = p.ProductId,
+                                ProductName = p.ProductName,
+                                ProductDescription = p.ProductDescription,
+                                ProductPrice = p.ProductPrice,
+                                ProductQuantity = p.ProductQuantity,
+                                DateAdded = p.DateAdded
+                            };
+                return await query.ToListAsync();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                response.ResultMessage = "Server Error";
+                return null;
             }
             finally
             {
                 CloseConnection.DisposeConnection();
             }
-            return response;
         }
     }
 }

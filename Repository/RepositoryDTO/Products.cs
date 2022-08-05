@@ -32,8 +32,7 @@ namespace Repository.RepositoryDTO
 
         [Column("date_added")]
         public DateTime DateAdded { get; set; }
-
         [Column("isActive")]
-        public bool IsActive { get; set; } 
+        public bool IsActive { get; set; }
     }
 }

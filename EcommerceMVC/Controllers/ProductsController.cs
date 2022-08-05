@@ -1,19 +1,19 @@
-﻿using Ecommerce.EcommerceDTOs;
-using Ecommerce.Exceptions;
+﻿using EcommerceMVC.EcommerceDTOs;
+using EcommerceMVC.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 using Services.ServicesDTO;
 
-namespace Ecommerce.Controllers
+namespace EcommerceMVC.Controllers
 {
     [Route("products")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : Controller
     {
         private readonly IServiceCommands _commandsServices;
         private readonly IServiceQueries _serviceQueries;
 
-        public ProductController(IServiceCommands commandsServices, IServiceQueries serviceQueries)
+        public ProductsController(IServiceCommands commandsServices, IServiceQueries serviceQueries)
         {
             _commandsServices = commandsServices;
             _serviceQueries = serviceQueries;

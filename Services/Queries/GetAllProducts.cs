@@ -25,7 +25,8 @@ namespace Services.Queries
                     ProductDescription = product.ProductDescription,
                     ProductPrice = product.ProductPrice,
                     ProductQuantity = product.ProductQuantity,
-                    DateAdded = product.DateAdded.Date.ToString("MM/dd/yyyy")
+                    DateAdded = product.DateAdded.Date.ToString("MM/dd/yyyy"),
+                    IsActive = product.IsActive
                 });
             }
             return result;

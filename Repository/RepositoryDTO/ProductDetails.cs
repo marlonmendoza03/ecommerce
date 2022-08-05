@@ -17,5 +17,6 @@ namespace Repository.RepositoryDTO
         public string? ProductImage2 { get; set; }
         public string? ProductImage3 { get; set; }
         public DateTime DateAdded { get; set; }
+        public bool IsActive { get; set; }
     }
 }

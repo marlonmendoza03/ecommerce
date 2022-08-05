@@ -1,11 +1,11 @@
-﻿using Ecommerce.EcommerceDTOs;
+﻿using EcommerceMVC.EcommerceDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 
-namespace Ecommerce.Controllers
+namespace EcommerceMVC.Controllers
 {
     [Route("logs")]
-    public class LogsController : ControllerBase
+    public class LogsController : Controller
     {
         private readonly IServiceQueries _serviceQueries;
 
@@ -17,9 +17,9 @@ namespace Ecommerce.Controllers
         [HttpGet]
         public async Task<IActionResult> Logs()
         {
-            var response = new LogsResponse();
+            var response = new LogsResponseModel();
             var logs = await _serviceQueries.GetAllLogs();
-            var logsResponse = new List<LogsResponseDTO>();
+            var logsResponse = new List<LogsModel>();
             if (logs == null)
             {
                 return null;
@@ -27,7 +27,7 @@ namespace Ecommerce.Controllers
 
             foreach (var logItems in logs)
             {
-                logsResponse.Add(new LogsResponseDTO()
+                logsResponse.Add(new LogsModel()
                 {
                     LogId = logItems.LogId,
                     LogDescription = logItems.LogDescription,
@@ -37,7 +37,7 @@ namespace Ecommerce.Controllers
             }
 
             response.Logs = logsResponse;
-            return Ok(response);
+            return View(response);
         }
     }
 }

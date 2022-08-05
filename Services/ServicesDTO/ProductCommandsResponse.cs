@@ -23,7 +23,6 @@ namespace Services.ServicesDTO
         public string? DateAdded { get; set; }
 
         public string? ResultMessage { get; set; }
-
-        public bool isActive { get; set; } 
+        public bool IsActive { get; set; }
     }
 }

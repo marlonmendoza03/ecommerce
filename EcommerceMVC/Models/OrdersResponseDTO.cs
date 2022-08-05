@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Ecommerce.EcommerceDTOs
+namespace EcommerceMVC.EcommerceDTOs
 {
     public class OrdersResponse
     {
