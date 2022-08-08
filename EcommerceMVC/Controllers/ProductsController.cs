@@ -20,7 +20,7 @@ namespace EcommerceMVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllProducts()
+        public async Task<IActionResult> GetAllProducts() 
         {
             var products = await _serviceQueries.GetAllProducts();
             var response = new ProductsResponse();
