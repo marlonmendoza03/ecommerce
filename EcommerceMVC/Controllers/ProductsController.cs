@@ -21,7 +21,7 @@ namespace EcommerceMVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllProducts() 
+        public async Task<IActionResult> Products()
         {
             var products = await _serviceQueries.GetAllProducts();
             var response = new ProductsResponse();
@@ -42,6 +42,8 @@ namespace EcommerceMVC.Controllers
                     ProductPrice = product.ProductPrice,
                     ProductQuantity = product.ProductQuantity,
                     ProductImage1 = product.ProductImage1,
+                    ProductImage2 = product.ProductImage2,
+                    ProductImage3 = product.ProductImage3,
                     DateAdded = DateTime.Now.ToString("MM/dd/yyyy")
                 });
             }

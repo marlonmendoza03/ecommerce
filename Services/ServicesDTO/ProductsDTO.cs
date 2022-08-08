@@ -24,6 +24,9 @@ namespace Services.ServicesDTO
 
         public string? ProductImage1 { get; set; }
 
+        public string? ProductImage2 { get; set; }
+        public string? ProductImage3 { get; set; }
+
         public bool IsActive { get; set; }
         public bool? IsFeatured { get; set; }
     }
