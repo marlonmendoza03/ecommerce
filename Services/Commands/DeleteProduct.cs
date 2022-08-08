@@ -34,7 +34,7 @@ namespace Services.Commands
                     product.ResultMessage = serverErrorMsg;
                     return product;
                 }
-                product.ResultMessage = "Success";
+                product.ResultMessage = "Delete Successful";
 
             }
             catch (Exception)
