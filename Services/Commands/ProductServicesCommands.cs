@@ -26,7 +26,10 @@ namespace Services.Commands
                 ProductDescription = res.ProductDescription,
                 ProductPrice = res.ProductPrice,
                 ProductQuantity = res.ProductQuantity,
-                DateAdded = res.DateAdded.Date.ToString("MM/dd/yyyy")
+                DateAdded = res.DateAdded.Date.ToString("MM/dd/yyyy"),
+                ProductProc = res.ProductProc,
+                ProductRam = res.ProductRam,
+                ProductStorage = res.ProductStorage
             };
 
             return response;

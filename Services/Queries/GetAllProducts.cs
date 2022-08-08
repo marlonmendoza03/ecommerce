@@ -30,7 +30,10 @@ namespace Services.Queries
                     ProductImage2 = product.ProductImage2,
                     ProductImage3 = product.ProductImage3,
                     IsActive = product.IsActive,
-                    IsFeatured = product.IsFeatured
+                    IsFeatured = product.IsFeatured,
+                    ProductProc = product.ProductProc,
+                    ProductRam = product.ProductRam,
+                    ProductStorage = product.ProductStorage
                 });
             }
             return result;

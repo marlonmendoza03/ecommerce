@@ -12,5 +12,8 @@ namespace EcommerceMVC.EcommerceDTOs
         public int ProductQuantity { get; set; }
         public string? DateAdded { get; set; }
         public bool? IsFeatured { get; set; }
+        public string ProductProc { get; set; }
+        public int ProductRam { get; set; }
+        public int ProductStorage { get; set; }
     }
 }
