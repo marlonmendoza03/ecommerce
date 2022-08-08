@@ -27,6 +27,8 @@ namespace Services.Queries
                     ProductQuantity = product.ProductQuantity,
                     DateAdded = product.DateAdded.Date.ToString("MM/dd/yyyy"),
                     ProductImage1 = product.ProductImage1,
+                    ProductImage2 = product.ProductImage2,
+                    ProductImage3 = product.ProductImage3,
                     IsActive = product.IsActive,
                     IsFeatured = product.IsFeatured
                 });
