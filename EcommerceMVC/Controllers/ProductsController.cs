@@ -115,8 +115,14 @@ namespace EcommerceMVC.Controllers
             {
                 return customResponse.ServerErrorResponse();
             }
+            
+            var response = new DeleteResponse()
+            {
+                ProductId = result.ProductId,
+                Result = result.ResultMessage
+            };
 
-            return Ok();
+            return Ok(response);
         }
 
     }
