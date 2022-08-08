@@ -7,6 +7,6 @@ namespace EcommerceMVC.Exceptions
         [Key]
         public int ProductId { get; set; }
 
-        public string? Result { get; set; } = "Successfully Deleted";
+        public string? Result { get; set; } = "Success";
     }
 }
