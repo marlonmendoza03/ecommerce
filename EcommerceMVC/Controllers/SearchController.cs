@@ -1,6 +1,5 @@
 ﻿using EcommerceMVC.EcommerceDTOs;
 using EcommerceMVC.Exceptions;
-using EcommerceMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 using Services.ServicesDTO;

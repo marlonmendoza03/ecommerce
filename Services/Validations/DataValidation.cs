@@ -38,5 +38,20 @@ namespace Services.Validations
             }
             return productCommandResponse; 
         }
+        public static async Task<ProductCommandsResponse> UpdateValidation(IRepositoryQueries repositoryQueries, ProductCommands productCommands)
+        {
+            var product = new ProductCommandsResponse();
+
+            var products = await repositoryQueries.GetAllProducts();
+
+            bool isIdExists = products.Any(i => i.ProductId == productCommands.ProductId);
+
+            if (!isIdExists)
+            {
+                return null;
+            };
+
+            return product;
+        }
     }
 }
