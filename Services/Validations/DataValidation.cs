@@ -38,16 +38,15 @@ namespace Services.Validations
             }
             return productCommandResponse; 
         }
-
-        public static async Task<ProductCommandsResponse> DeleteProductValidation(IRepositoryQueries repositoryQueries, ProductCommands productCommands)
+        public static async Task<ProductCommandsResponse> UpdateValidation(IRepositoryQueries repositoryQueries, ProductCommands productCommands)
         {
             var product = new ProductCommandsResponse();
 
             var products = await repositoryQueries.GetAllProducts();
 
-            bool activeStatus = products.Where(x => x.ProductId == productCommands.ProductId).Select(x => x.IsActive).FirstOrDefault();
+            bool isIdExists = products.Any(i => i.ProductId == productCommands.ProductId);
 
-            if (activeStatus == false)
+            if (!isIdExists)
             {
                 return null;
             };

@@ -1,4 +1,5 @@
-﻿using EcommerceMVC.EcommerceDTOs;
+﻿using Ecommerce.EcommerceDTOs;
+using EcommerceMVC.EcommerceDTOs;
 using EcommerceMVC.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
@@ -92,20 +93,26 @@ namespace EcommerceMVC.Controllers
         }
 
         [Route("{id}")]
-        [HttpDelete]
-        public async Task<IActionResult> DeleteProduct(int id)
+        [HttpPut]
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductRequest updateProductRequest)
         {
-            var Product = new ProductCommands();
             CustomResponse customResponse = new CustomResponse();
 
-            if (id == null)
+            if (id != updateProductRequest.ProductId)
             {
                 return customResponse.ClientErrorResponse();
             }
 
-            Product.ProductId = id;
+            var productCommands = new ProductCommands()
+            {
+                ProductId = id,
+                ProductName = updateProductRequest.ProductName,
+                ProductDescription = updateProductRequest.ProductDescription,
+                ProductPrice = updateProductRequest.ProductPrice,
+                ProductQuantity = updateProductRequest.ProductQuantity
+            };
 
-            var result = await _commandsServices.DeleteProduct(Product);
+            var result = await _commandsServices.UpdateProduct(productCommands);
 
             if (result == null)
             {
@@ -117,13 +124,17 @@ namespace EcommerceMVC.Controllers
                 return customResponse.ServerErrorResponse();
             }
 
-            var Deleteresponse = new DeleteResponse()
+            var response = new ProductResponse()
             {
                 ProductId = result.ProductId,
-                Result = result.ResultMessage
+                ProductName = result.ProductName,
+                ProductDescription = result.ProductDescription,
+                ProductPrice = result.ProductPrice,
+                ProductQuantity = result.ProductQuantity,
+                DateAdded = result.DateAdded
             };
 
-            return Ok(Deleteresponse);
+            return Ok(response);
         }
     }
 }
