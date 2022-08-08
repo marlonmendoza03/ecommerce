@@ -21,7 +21,7 @@ namespace EcommerceMVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Products()
+        public async Task<IActionResult> GetAllProducts() 
         {
             var products = await _serviceQueries.GetAllProducts();
             var response = new ProductsResponse();
@@ -134,6 +134,41 @@ namespace EcommerceMVC.Controllers
                 ProductPrice = result.ProductPrice,
                 ProductQuantity = result.ProductQuantity,
                 DateAdded = result.DateAdded
+            };
+
+            return Ok(response);
+        }
+
+        [Route("{id}")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var Product = new ProductCommands();
+            CustomResponse customResponse = new CustomResponse();
+
+            if (id == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            Product.ProductId = id;
+
+            var result = await _commandsServices.DeleteProduct(Product);
+
+            if (result == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            if (result.ResultMessage == "Server Error")
+            {
+                return customResponse.ServerErrorResponse();
+            }
+
+            var response = new DeleteResponse()
+            {
+                ProductId = result.ProductId,
+                Result = result.ResultMessage
             };
 
             return Ok(response);

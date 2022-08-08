@@ -101,5 +101,32 @@ namespace Repository.Queries
                 CloseConnection.DisposeConnection();
             }
         }
+        public async Task<ProductReponse> GetProductById(int id)
+        {
+            var response = new ProductReponse();
+            try
+            {
+                var result = await _dbContext.products.Where(x => x.ProductId == id).FirstOrDefaultAsync();
+                response = new ProductReponse()
+                {
+                    ProductId = result.ProductId,
+                    ProductName = result.ProductName,
+                    ProductDescription = result.ProductDescription,
+                    ProductPrice = result.ProductPrice,
+                    isActive = result.IsActive
+                };
+
+                response.ResultMessage = "Success";
+            }
+            catch (Exception)
+            {
+                response.ResultMessage = "Server Error";
+            }
+            finally
+            {
+                CloseConnection.DisposeConnection();
+            }
+            return response;
+        }
     }
 }

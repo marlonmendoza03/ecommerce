@@ -1,10 +1,5 @@
 ﻿using Repository.Interfaces;
 using Services.ServicesDTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Validations
 {
@@ -47,6 +42,21 @@ namespace Services.Validations
             bool isIdExists = products.Any(i => i.ProductId == productCommands.ProductId);
 
             if (!isIdExists)
+            {
+                return null;
+            };
+
+            return product;
+        }
+        public static async Task<ProductCommandsResponse> DeleteProductValidation(IRepositoryQueries repositoryQueries, ProductCommands productCommands)
+        {
+            var product = new ProductCommandsResponse();
+
+            var products = await repositoryQueries.GetAllProducts();
+
+            bool activeStatus = products.Where(x => x.ProductId == productCommands.ProductId).Select(x => x.IsActive).FirstOrDefault();
+
+            if (activeStatus == false)
             {
                 return null;
             };

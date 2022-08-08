@@ -11,5 +11,6 @@ namespace Services.Interfaces
     {
         Task<ProductCommandsResponse> AddProduct(ProductCommands productCommands);
         Task<ProductCommandsResponse> UpdateProduct(ProductCommands productCommands);
+        Task<ProductCommandsResponse> DeleteProduct(ProductCommands productCommands);
     }
 }

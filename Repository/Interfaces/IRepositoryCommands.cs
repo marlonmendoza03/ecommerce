@@ -11,5 +11,6 @@ namespace Repository.Interfaces
     {
         Task<RepositoryResponse> AddProduct(Products products);
         Task<RepositoryResponse> UpdateProduct(Products products);
+        Task<RepositoryResponse> DeleteProduct(Products products);
     }
 }
