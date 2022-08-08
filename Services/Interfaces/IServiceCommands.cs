@@ -1,4 +1,5 @@
-﻿using Services.ServicesDTO;
+﻿using Repository.RepositoryDTO;
+using Services.ServicesDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace Services.Interfaces
     public interface IServiceCommands
     {
         Task<ProductCommandsResponse> AddProduct(ProductCommands productCommands);
+
+        void PlaceOrder(List<ShoppingCart> shoppingCart);
     }
 }
