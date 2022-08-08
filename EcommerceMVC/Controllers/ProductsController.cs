@@ -90,6 +90,7 @@ namespace EcommerceMVC.Controllers
 
             return Ok(response);
         }
+
         [Route("{id}")]
         [HttpDelete]
         public async Task<IActionResult> DeleteProduct(int id)
@@ -115,15 +116,14 @@ namespace EcommerceMVC.Controllers
             {
                 return customResponse.ServerErrorResponse();
             }
-            
-            var response = new DeleteResponse()
+
+            var Deleteresponse = new DeleteResponse()
             {
                 ProductId = result.ProductId,
                 Result = result.ResultMessage
             };
 
-            return Ok(response);
+            return Ok(Deleteresponse);
         }
-
     }
 }
