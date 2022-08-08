@@ -26,5 +26,8 @@ namespace Repository.RepositoryDTO
         public DateTime DateAdded { get; set; }
         [Column("isActive")]
         public bool IsActive { get; set; }
+
+        [Column("isFeatured")]
+        public bool IsFeatured { get; set; }
     }
 }

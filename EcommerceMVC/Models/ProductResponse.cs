@@ -11,5 +11,6 @@ namespace EcommerceMVC.EcommerceDTOs
         public float ProductPrice { get; set; }
         public int ProductQuantity { get; set; }
         public string? DateAdded { get; set; }
+        public bool? IsFeatured { get; set; }
     }
 }
