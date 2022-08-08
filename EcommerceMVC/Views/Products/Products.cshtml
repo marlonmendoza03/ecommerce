@@ -8,10 +8,10 @@
 <!-- Button trigger modal -->
 @foreach (var products in @Model.Products)
 {
-    <img href="#products" data-toggle="modal" src="images/@products.ProductImage1" width="200px" height="200px" />
+    <img href="#product-@products.ProductId" data-toggle="modal" src="images/@products.ProductImage1" width="200px" height="200px" />
 
     <!-- Modal -->
-    <div class="modal fade" id="products" tabindex="-1" role="dialog" aria-labelledby="productsInformation" aria-hidden="true">
+    <div class="modal fade" id="product-@products.ProductId" tabindex="-1" role="dialog" aria-labelledby="productsInformation" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
