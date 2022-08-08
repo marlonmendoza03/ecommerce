@@ -11,6 +11,8 @@ namespace Services.Interfaces
     public interface IServiceCommands
     {
         Task<ProductCommandsResponse> AddProduct(ProductCommands productCommands);
+        Task<ProductCommandsResponse> UpdateProduct(ProductCommands productCommands);
+        Task<ProductCommandsResponse> DeleteProduct(ProductCommands productCommands);
 
         void PlaceOrder(List<ShoppingCart> shoppingCart);
     }

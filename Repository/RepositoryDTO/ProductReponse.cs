@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Repository.RepositoryDTO
+﻿namespace Repository.RepositoryDTO
 {
-    public class ProductDetails
+    public class ProductReponse
     {
         public int ProductId { get; set; }
         public string? ProductName { get; set; }
@@ -17,7 +11,7 @@ namespace Repository.RepositoryDTO
         public string? ProductImage2 { get; set; }
         public string? ProductImage3 { get; set; }
         public DateTime DateAdded { get; set; }
-        public bool IsActive { get; set; }
         public string? ResultMessage { get; set; }
+        public bool isActive { get; set; }
     }
 }
