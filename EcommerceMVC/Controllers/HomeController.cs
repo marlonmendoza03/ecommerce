@@ -43,7 +43,6 @@ namespace EcommerceMVC.Controllers
                     IsFeatured = products.IsFeatured
                 });
             }
-
             response.Products = logsResponse;
             return View(response);
         }
