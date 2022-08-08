@@ -1,0 +1,71 @@
+﻿@model EcommerceMVC.EcommerceDTOs.ProductsResponse
+@{
+    ViewData["Title"] = "Products";
+}
+<h1>@ViewData["Title"]</h1>
+<br />
+
+<!-- Button trigger modal -->
+@foreach (var products in @Model.Products)
+{
+    <img href="#product-@products.ProductId" data-toggle="modal" src="images/@products.ProductImage1" width="200px" height="200px" />
+
+    <!-- Modal -->
+    <div class="modal fade" id="product-@products.ProductId" tabindex="-1" role="dialog" aria-labelledby="productsInformation" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="@products.ProductName"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+                        <img href="#products" data-toggle="modal" src="images/@products.ProductImage1" width="200px" height="200px" />
+                    </div>
+                    <div>
+                        <br/>
+                        <h3>@products.ProductName</h3>
+                        <br/>
+                        <p><strong>Product Description:</strong> @products.ProductDescription</p>
+                        <p><strong>Price:</strong> @products.ProductPrice</p>
+                        <p><strong>Quantity:</strong> @products.ProductQuantity</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@*<a class="btn btn-primary btn-sm" href="/Products/addproduct">Add Product</a>
+<center>
+<br />
+<table class="table table-bordered table-responsive-md table-hover">
+    <tr>
+        <th class="row-cols-3">Product Id</th>
+        <th class="row-cols-3">Product Name</th>
+        <th class="row-cols-3">Product Description</th>
+        <th class="row-cols-3">Price</th>
+        <th class="row-cols-3">Quantity</th>
+        <th class="row-cols-3">Date Added</th>
+    </tr>
+    @foreach(var logs in @Model.Products)
+    {
+    <tr>
+        <td class="row-cols-3">@logs.ProductId</td>
+        <td class="row-cols-3">@logs.ProductName</td>
+        <td class="row-cols-3">@logs.ProductDescription</td>
+        <td class="row-cols-3">@logs.ProductPrice</td>
+        <td class="row-cols-3">@logs.ProductQuantity</td>
+        <td class="row-cols-3">@logs.DateAdded</td>
+    </tr>
+    }
+</table>
+</center>
+*@

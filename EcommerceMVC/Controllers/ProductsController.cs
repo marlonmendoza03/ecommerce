@@ -41,15 +41,17 @@ namespace EcommerceMVC.Controllers
                     ProductDescription = product.ProductName,
                     ProductPrice = product.ProductPrice,
                     ProductQuantity = product.ProductQuantity,
+                    ProductImage1 = product.ProductImage1,
                     DateAdded = DateTime.Now.ToString("MM/dd/yyyy")
                 });
             }
 
             response.Products = result;
-            return Ok(response);
+            //return Ok(response);
+            return View(response);
         }
 
-        [HttpPost]
+        [HttpPost("addproduct")]
         public async Task<IActionResult> AddProduct([FromBody] ProductRequest productRequest)
         {
             CustomResponse customResponse = new CustomResponse();

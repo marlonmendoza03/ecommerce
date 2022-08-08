@@ -23,6 +23,22 @@ namespace Repository.Queries
             }
         }
 
+        public async Task<List<Products>> GetAllFeaturedProducts()
+        {
+            try
+            {
+                return await _dbContext.products.Where(x => (x.IsActive == true) && (x.IsFeatured == true)).ToListAsync();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                CloseConnection.DisposeConnection();
+            }
+        }
+
         public async Task<ProductDetails> GetProductwithName(string productName)
         {
             var response = new ProductDetails();
