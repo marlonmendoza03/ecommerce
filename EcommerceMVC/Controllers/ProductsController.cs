@@ -41,6 +41,7 @@ namespace EcommerceMVC.Controllers
                     ProductDescription = product.ProductName,
                     ProductPrice = product.ProductPrice,
                     ProductQuantity = product.ProductQuantity,
+                    ProductImage1 = product.ProductImage1,
                     DateAdded = DateTime.Now.ToString("MM/dd/yyyy")
                 });
             }

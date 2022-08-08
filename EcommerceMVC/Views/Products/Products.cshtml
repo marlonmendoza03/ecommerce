@@ -3,34 +3,45 @@
     ViewData["Title"] = "Products";
 }
 <h1>@ViewData["Title"]</h1>
+<br />
 
 <!-- Button trigger modal -->
-
-@foreach(var logs in @Model.Products)
+@foreach (var products in @Model.Products)
 {
-    <img href="#exampleModalCenter" data-toggle="modal" src="images/phone1.jpg" />
+    <img href="#products" data-toggle="modal" src="images/@products.ProductImage1" width="200px" height="200px" />
 
-}
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <!-- Modal -->
+    <div class="modal fade" id="products" tabindex="-1" role="dialog" aria-labelledby="productsInformation" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="@products.ProductName"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+                        <img href="#products" data-toggle="modal" src="images/@products.ProductImage1" width="200px" height="200px" />
+                    </div>
+                    <div>
+                        <br/>
+                        <h3>@products.ProductName</h3>
+                        <br/>
+                        <p><strong>Product Description:</strong> @products.ProductDescription</p>
+                        <p><strong>Price:</strong> @products.ProductPrice</p>
+                        <p><strong>Quantity:</strong> @products.ProductQuantity</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Add to cart</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+}
+
 
 @*<a class="btn btn-primary btn-sm" href="/Products/addproduct">Add Product</a>
 <center>
