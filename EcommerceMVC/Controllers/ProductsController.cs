@@ -38,7 +38,7 @@ namespace EcommerceMVC.Controllers
                 {
                     ProductId = product.ProductId,
                     ProductName = product.ProductName,
-                    ProductDescription = product.ProductName,
+                    ProductDescription = product.ProductDescription,
                     ProductPrice = product.ProductPrice,
                     ProductQuantity = product.ProductQuantity,
                     ProductImage1 = product.ProductImage1,

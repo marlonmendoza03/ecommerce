@@ -3,8 +3,11 @@
 @{
     ViewData["Title"] = "Login";
 }
-<h1>@ViewData["Title"]</h1>
-<div class="col-md-12">
+<center>
+<h1>@ViewData["Title"]</h1> 
+<br />
+
+    <div class="col-md-4"></div>
     <div class="col-md-4">
     <form class="form-control" method="post" action="">
         <label class="form-label">Username</label>
@@ -12,9 +15,12 @@
         <label class="form-label">Password</label>
         <input type ="text" class="input-group-text" name="password" id="password" required=required/>
         <br />
-        <input type="submit" class="btn-outline-primary btn-sm" name="submit" value="Login" />
+        <input type="submit" class="btn-primary btn-sm" name="submit" value="Login" /> 
+        <br /> <br />
     </form>
     <br />
     <a href="/home" class="text-danger"><u>Not a member yet? Sign Up</u></a>
     </div>
-</div>
+    <div class="col-md-4"></div>
+    
+</center>
