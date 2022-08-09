@@ -9,7 +9,7 @@
 @foreach (var products in @Model.Products)
 {<figure class="figure">
     <img href="#product-@products.ProductId" data-toggle="modal" src="images/@products.ProductImage1" width="200px" height="200px" />
-    <figcaption class="figure-caption text-center"><p><a href="#product-@products.ProductId" data-toggle="modal">@products.ProductName</a></p></figcaption>
+    <figcaption class="figure-caption text-center"><p style="color:black"><a href="#product-@products.ProductId" class="link-dark" data-toggle="modal">@products.ProductName</a></p></figcaption>
  </figure>
         @Html.Raw("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
         <div class="modal fade" id="product-@products.ProductId" tabindex="-1" role="dialog" aria-labelledby="productsInformation" aria-hidden="true">
