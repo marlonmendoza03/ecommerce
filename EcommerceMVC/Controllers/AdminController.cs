@@ -1,6 +1,9 @@
-﻿using EcommerceMVC.EcommerceDTOs;
+﻿using Ecommerce.EcommerceDTOs;
+using EcommerceMVC.EcommerceDTOs;
+using EcommerceMVC.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
+using Services.ServicesDTO;
 
 namespace EcommerceMVC.Controllers
 {
@@ -8,10 +11,12 @@ namespace EcommerceMVC.Controllers
     public class AdminController : Controller
     {
         private readonly IServiceQueries _serviceQueries;
+        private readonly IServiceCommands _commandsServices;
 
-        public AdminController(IServiceQueries serviceQueries)
+        public AdminController(IServiceQueries serviceQueries, IServiceCommands commandsServices)
         {
             _serviceQueries = serviceQueries;
+            _commandsServices = commandsServices;
         }
 
         [HttpGet("logs")]
@@ -66,6 +71,142 @@ namespace EcommerceMVC.Controllers
 
             response.Orders = result;
             return View(response);
+        }
+
+        [HttpPost("addProduct")]
+        public async Task<IActionResult> AddProduct([FromBody] ProductRequest productRequest)
+        {
+            CustomResponse customResponse = new CustomResponse();
+
+            if (productRequest == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            var productCommands = new ProductCommands()
+            {
+                ProductName = productRequest.ProductName,
+                ProductDescription = productRequest.ProductDescription,
+                ProductPrice = productRequest.ProductPrice,
+                ProductQuantity = productRequest.ProductQuantity,
+                ProductProc = productRequest.ProductProc,
+                ProductRam = productRequest.ProductRam,
+                ProductStorage = productRequest.ProductStorage
+            };
+
+            var result = await _commandsServices.AddProduct(productCommands);
+
+            if (result == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            if (result.ResultMessage == "Server Error")
+            {
+                return customResponse.ServerErrorResponse();
+            }
+
+            var response = new ProductResponse()
+            {
+                ProductId = result.ProductId,
+                ProductName = result.ProductName,
+                ProductDescription = result.ProductDescription,
+                ProductPrice = result.ProductPrice,
+                ProductQuantity = result.ProductQuantity,
+                DateAdded = result.DateAdded,
+                ProductProc = result.ProductProc,
+                ProductRam = result.ProductRam,
+                ProductStorage = result.ProductStorage
+            };
+
+            return Ok(response);
+        }
+
+        [Route("updateProduct/{id}")]
+        [HttpPut]
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductRequest updateProductRequest)
+        {
+            CustomResponse customResponse = new CustomResponse();
+
+            if (id != updateProductRequest.ProductId)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            var productCommands = new ProductCommands()
+            {
+                ProductId = id,
+                ProductName = updateProductRequest.ProductName,
+                ProductDescription = updateProductRequest.ProductDescription,
+                ProductPrice = updateProductRequest.ProductPrice,
+                ProductQuantity = updateProductRequest.ProductQuantity,
+                ProductProc = updateProductRequest.ProductProc,
+                ProductRam = updateProductRequest.ProductRam,
+                ProductStorage = updateProductRequest.ProductStorage
+
+            };
+
+            var result = await _commandsServices.UpdateProduct(productCommands);
+
+            if (result == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            if (result.ResultMessage == "Server Error")
+            {
+                return customResponse.ServerErrorResponse();
+            }
+
+            var response = new ProductResponse()
+            {
+                ProductId = result.ProductId,
+                ProductName = result.ProductName,
+                ProductDescription = result.ProductDescription,
+                ProductPrice = result.ProductPrice,
+                ProductQuantity = result.ProductQuantity,
+                DateAdded = result.DateAdded,
+                ProductProc = result.ProductProc,
+                ProductRam = result.ProductRam,
+                ProductStorage = result.ProductStorage
+            };
+
+            return Ok(response);
+        }
+
+        [Route("deleteProduct/{id}")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var Product = new ProductCommands();
+            CustomResponse customResponse = new CustomResponse();
+
+            if (id == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            Product.ProductId = id;
+
+            var result = await _commandsServices.DeleteProduct(Product);
+
+            if (result == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            if (result.ResultMessage == "Server Error")
+            {
+                return customResponse.ServerErrorResponse();
+            }
+
+            var response = new DeleteResponse()
+            {
+                ProductId = result.ProductId,
+                Result = result.ResultMessage
+            };
+
+            return Ok(response);
         }
     }
 }
