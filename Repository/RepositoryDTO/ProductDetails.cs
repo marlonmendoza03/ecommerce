@@ -19,5 +19,8 @@ namespace Repository.RepositoryDTO
         public DateTime DateAdded { get; set; }
         public bool IsActive { get; set; }
         public string? ResultMessage { get; set; }
+        public string ProductProc { get; set; }
+        public int ProductRam { get; set; }
+        public int ProductStorage { get; set; }
     }
 }

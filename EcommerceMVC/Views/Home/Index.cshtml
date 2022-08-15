@@ -1,4 +1,6 @@
-﻿@{
+﻿@model EcommerceMVC.EcommerceDTOs.ProductsResponse
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -12,7 +14,7 @@
     @{
         var first = true;
     }
-    @foreach (var products in Model.Products)
+    @foreach (var products in @Model.Products.Where(x => x.IsFeatured == true))
     {
         <div class="carousel-item @(first?Html.Raw("active"):Html.Raw(""))">
             <img class="d-block w-100" height="100%" width="100%" src="~/banners/@products.ProductImage1" alt="@products.ProductName">

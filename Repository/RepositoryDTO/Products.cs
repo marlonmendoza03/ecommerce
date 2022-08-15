@@ -37,5 +37,11 @@ namespace Repository.RepositoryDTO
 
         [Column("isFeatured")]
         public bool IsFeatured { get; set; }
+        [Column("product_proc")]
+        public string ProductProc { get; set; }
+        [Column("product_ram")]
+        public int ProductRam { get; set; }
+        [Column("product_storage")]
+        public int ProductStorage { get; set; }
     }
 }

@@ -44,7 +44,10 @@ namespace EcommerceMVC.Controllers
                     ProductImage1 = product.ProductImage1,
                     ProductImage2 = product.ProductImage2,
                     ProductImage3 = product.ProductImage3,
-                    DateAdded = DateTime.Now.ToString("MM/dd/yyyy")
+                    DateAdded = DateTime.Now.ToString("MM/dd/yyyy"),
+                    ProductProc = product.ProductProc,
+                    ProductRam = product.ProductRam,
+                    ProductStorage = product.ProductStorage
                 });
             }
 
@@ -68,7 +71,10 @@ namespace EcommerceMVC.Controllers
                 ProductName = productRequest.ProductName,
                 ProductDescription = productRequest.ProductDescription,
                 ProductPrice = productRequest.ProductPrice,
-                ProductQuantity = productRequest.ProductQuantity
+                ProductQuantity = productRequest.ProductQuantity,
+                ProductProc = productRequest.ProductProc,
+                ProductRam = productRequest.ProductRam,
+                ProductStorage = productRequest.ProductStorage
             };
 
             var result = await _commandsServices.AddProduct(productCommands);
@@ -90,7 +96,10 @@ namespace EcommerceMVC.Controllers
                 ProductDescription = result.ProductDescription,
                 ProductPrice = result.ProductPrice,
                 ProductQuantity = result.ProductQuantity,
-                DateAdded = result.DateAdded
+                DateAdded = result.DateAdded,
+                ProductProc = result.ProductProc,
+                ProductRam = result.ProductRam,
+                ProductStorage = result.ProductStorage
             };
 
             return Ok(response);
@@ -113,7 +122,11 @@ namespace EcommerceMVC.Controllers
                 ProductName = updateProductRequest.ProductName,
                 ProductDescription = updateProductRequest.ProductDescription,
                 ProductPrice = updateProductRequest.ProductPrice,
-                ProductQuantity = updateProductRequest.ProductQuantity
+                ProductQuantity = updateProductRequest.ProductQuantity,
+                ProductProc = updateProductRequest.ProductProc,
+                ProductRam = updateProductRequest.ProductRam,
+                ProductStorage = updateProductRequest.ProductStorage
+
             };
 
             var result = await _commandsServices.UpdateProduct(productCommands);
@@ -135,7 +148,10 @@ namespace EcommerceMVC.Controllers
                 ProductDescription = result.ProductDescription,
                 ProductPrice = result.ProductPrice,
                 ProductQuantity = result.ProductQuantity,
-                DateAdded = result.DateAdded
+                DateAdded = result.DateAdded,
+                ProductProc = result.ProductProc,
+                ProductRam = result.ProductRam,
+                ProductStorage = result.ProductStorage
             };
 
             return Ok(response);

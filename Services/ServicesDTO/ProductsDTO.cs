@@ -29,5 +29,8 @@ namespace Services.ServicesDTO
 
         public bool IsActive { get; set; }
         public bool? IsFeatured { get; set; }
+        public string ProductProc { get; set; }
+        public int ProductRam { get; set; }
+        public int ProductStorage { get; set; }
     }
 }

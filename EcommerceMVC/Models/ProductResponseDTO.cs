@@ -20,5 +20,8 @@ namespace EcommerceMVC.EcommerceDTOs
         public string ProductImage2 { get; set; }
         public string ProductImage3 { get; set; }
         public bool? IsFeatured { get; set; }
+        public string ProductProc { get; set; }
+        public int ProductRam { get; set; }
+        public int ProductStorage { get; set; }
     }
 }

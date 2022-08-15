@@ -17,5 +17,8 @@ namespace Services.ServicesDTO
         public int ProductQuantity { get; set; }
         public DateTime DateAdded { get; set; }
         public bool IsActive { get; set; }
+        public string ProductProc { get; set; }
+        public int ProductRam { get; set; }
+        public int ProductStorage { get; set; }
     }
 }

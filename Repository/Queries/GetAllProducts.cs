@@ -58,7 +58,10 @@ namespace Repository.Queries
                                   ProductPrice = p.ProductPrice,
                                   ProductQuantity = p.ProductQuantity,
                                   DateAdded = p.DateAdded,
-                                  IsActive = p.IsActive
+                                  IsActive = p.IsActive,
+                                  ProductProc = p.ProductProc,
+                                  ProductRam = p.ProductRam,
+                                  ProductStorage = p.ProductStorage   
                               }).FirstOrDefaultAsync();
 
             return response;
@@ -88,7 +91,10 @@ namespace Repository.Queries
                                 ProductDescription = p.ProductDescription,
                                 ProductPrice = p.ProductPrice,
                                 ProductQuantity = p.ProductQuantity,
-                                DateAdded = p.DateAdded
+                                DateAdded = p.DateAdded,
+                                ProductProc = p.ProductProc,
+                                ProductRam = p.ProductRam,
+                                ProductStorage = p.ProductStorage
                             };
                 return await query.ToListAsync();
             }
@@ -113,7 +119,10 @@ namespace Repository.Queries
                     ProductName = result.ProductName,
                     ProductDescription = result.ProductDescription,
                     ProductPrice = result.ProductPrice,
-                    isActive = result.IsActive
+                    isActive = result.IsActive,
+                    ProductProc = result.ProductProc,
+                    ProductRam = result.ProductRam,
+                    ProductStorage = result.ProductStorage
                 };
 
                 response.ResultMessage = "Success";
