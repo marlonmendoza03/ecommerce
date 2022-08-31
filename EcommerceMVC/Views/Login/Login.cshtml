@@ -4,6 +4,7 @@
     ViewData["Title"] = "Login";
 }
 <h1>@ViewData["Title"]</h1>
+<link rel="stylesheet" href="~/css/login.css"/>
 <div class="col-md-12">
     <div class="col-md-4">
     <form class="form-control" method="post" action="">
@@ -12,9 +13,9 @@
         <label class="form-label">Password</label>
         <input type ="text" class="input-group-text" name="password" id="password" required=required/>
         <br />
-        <input type="submit" class="btn-outline-primary btn-sm" name="submit" value="Login" />
+        <input type="submit" class="btn-outline-primary btn-sm" name="submitLogin" value="Next" />
     </form>
-    <br />
-    <a href="/home" class="text-danger"><u>Not a member yet? Sign Up</u></a>
+    <a href="/login/register" class="text-danger"><u>Not a member yet? Sign Up</u></a>
     </div>
 </div>
+<script src="~/js/login.js"></script>

@@ -10,5 +10,6 @@ namespace Repository.Interfaces
     public interface ILoginRepositoryQuery
     {
         Task<LoginRepositoryResponse> GetUserWithUsernameAndPassword(string username, string password);
+        Task<RegisterRepositoryResponse> RegisterAccount(Users users);
     }
 }

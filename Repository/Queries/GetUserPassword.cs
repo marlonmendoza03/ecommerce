@@ -6,7 +6,7 @@ using Repository.RepositoryDTO;
 
 namespace Repository.Queries
 {
-    public class GetUserPassword : ILoginRepositoryQuery
+    public partial class GetUserPassword : ILoginRepositoryQuery
     {
         private readonly AppDbContext _appDbContext;
 

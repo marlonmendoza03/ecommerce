@@ -22,6 +22,7 @@ namespace EcommerceMVC.Controllers
         [HttpGet("logs")]
         public async Task<IActionResult> Logs()
         {
+            
             var response = new LogsResponseModel();
             var logs = await _serviceQueries.GetAllLogs();
             var logsResponse = new List<LogsModel>();

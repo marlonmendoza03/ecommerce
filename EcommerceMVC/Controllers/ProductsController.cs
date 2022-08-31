@@ -11,12 +11,10 @@ namespace EcommerceMVC.Controllers
     [ApiController]
     public class ProductsController : Controller
     {
-        private readonly IServiceCommands _commandsServices;
         private readonly IServiceQueries _serviceQueries;
 
         public ProductsController(IServiceCommands commandsServices, IServiceQueries serviceQueries)
         {
-            _commandsServices = commandsServices;
             _serviceQueries = serviceQueries;
         }
 

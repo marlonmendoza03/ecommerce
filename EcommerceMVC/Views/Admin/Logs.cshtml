@@ -1,4 +1,5 @@
 ﻿@model EcommerceMVC.EcommerceDTOs.LogsResponseModel
+@inject IHttpContextAccessor httpContextAccessor
 
 @{
     ViewData["Title"] = "Logs";
@@ -14,6 +15,7 @@
         <th class="row-cols-3">Log Description</th>
         <th class="row-cols-3">Added By</th>
         <th class="row-cols-3">Log Date</th>
+        <th class="row-cols-3">Session</th>
     </tr>
     @foreach(var logs in @Model.Logs)
     {
@@ -22,6 +24,7 @@
         <td class="row-cols-3">@logs.LogDescription</td>
         <td class="row-cols-3">@logs.AddedBy</td>
         <td class="row-cols-3">@logs.LogDate</td>
+        <td class="row-cols-3">@httpContextAccessor.HttpContext.Session.GetString("SessionKeyUsername")</td>
     </tr>
     }
 </table>

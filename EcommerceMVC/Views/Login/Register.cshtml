@@ -1,0 +1,61 @@
+﻿@using EcommerceMVC.Models
+@model RegisterRequest
+
+@{
+    ViewData["Title"] = "Register";
+}
+<h1>@ViewData["Title"]</h1>
+<link rel="stylesheet" href="~/css/login.css" />
+
+<section>
+    <div class="container">
+        <form asp-controller="Login" asp-action="RegisterAccount" method = "post" class="form-control" id="initialForm">
+            <div class="step step-1 active">
+                <div class="form-group">
+                    <label class="form-label" for="firstName">First Name</label>
+                    <input asp-for=FirstName type="text" class="input-group-text" name="firstName" id="firstName" placeholder="First Name" required=required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="lastName">Last Name</label>
+                    <input asp-for=LastName type="text" class="input-group-text" name="lastName" id="lastName" placeholder="Last Name" required=required />
+                </div>
+                <br />
+                <button type="button" class="btn btn-outline-primary btn-sm" id="nextBtn">Next</button>
+            </div>
+
+            <div class="step step-2">
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input asp-for=Email type="email" class="input-group-text" name="email" id="email" placeholder="Email@email.com" required=required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <input asp-for=Username type="text" class="input-group-text" name="username" id="username" placeholder="Username" required=required />
+                </div>
+                <br />
+                <button type="button" class="btn btn-outline-primary btn-sm" id="previousBtn">Previous</button>
+                <button type="button" class="btn btn-outline-primary btn-sm" id="nextBtn">Next</button>
+            </div>
+
+            <div class="step step-3">
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input asp-for=Password type="password" class="input-group-text" name="password" id="password" placeholder="Password" required=required onchange="check_pass();"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="retypePassword">Retype Password</label>
+                    <input asp-for=RetypePassword type="password" class="input-group-text" name="retypePassword" id="retypePassword" placeholder="Password" required=required onchange="check_pass();"/>
+                </div>
+                <div id="passCheck">
+                    <p id="passwordWarning">Password Does Not Match</p>
+                </div>
+                <br />
+                <button type="button" class="btn btn-outline-primary btn-sm" id="previousBtn">Previous</button>
+                <button type="submit" class="btn btn-outline-primary btn-sm" id="submitBtn" disabled>Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
+<br />
+
+<script src="~/js/login.js"></script>

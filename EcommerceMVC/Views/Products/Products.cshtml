@@ -3,68 +3,79 @@
     ViewData["Title"] = "Products";
 }
 <h1>@ViewData["Title"]</h1>
+<link rel="stylesheet" href="~/css/products.css" />
 <br />
-<center>
-<!-- Button trigger modal -->
-@foreach (var products in @Model.Products)
-{<figure class="figure">
-    <img href="#product-@products.ProductId" data-toggle="modal" src="images/@products.ProductImage1" width="200px" height="200px" />
-    <figcaption class="figure-caption text-center"><p><a href="#product-@products.ProductId" data-toggle="modal">@products.ProductName</a></p></figcaption>
- </figure>
-        @Html.Raw("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-        <div class="modal fade" id="product-@products.ProductId" tabindex="-1" role="dialog" aria-labelledby="productsInformation" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="@products.ProductName"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <div>
-                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner" data-interval="100">
-                                    <div class="carousel-item active">
-                                        <img class="img-fluid" src="images/@products.ProductImage1" alt="First slide" width= "50% \9" height= "50% \9" >
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="w-100 row">
+                <div class="col-2"><h1>This  section will contain filters</h1></div>
+                <div class="col-10">
+                    <!-- Button trigger modal -->
+                    @foreach (var products in @Model.Products)
+                    {
+                        <figure class="figure">
+                            <img href="#product-@products.ProductId" class="zoom" data-toggle="modal" src="~/images/@products.ProductImage1" width="200px" height="200px" />
+                            <figcaption class="figure-caption text-center"><p><b><a href="#product-@products.ProductId" data-toggle="modal">@products.ProductName <br>Price: $@products.ProductPrice</a></b></p></figcaption>
+                        </figure>
+                        @Html.Raw("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
+                        <div class="modal fade" id="product-@products.ProductId" tabindex="-1" role="dialog" aria-labelledby="productsInformation" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="@products.ProductName"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                    <div class="carousel-item">
-                                        <img class="img-fluid" src="images/@products.ProductImage2" alt="Second slide" width= "50% \9" height= "50% \9" >
+                                    <div class="modal-body">
+                                        <div>
+                                            <div>
+                                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                                    <div class="carousel-inner" data-interval="100">
+                                                        <div class="carousel-item active">
+                                                            <img class="img-fluid" src="~/images/@products.ProductImage1" alt="First slide" width="50% \9" height="50% \9">
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img class="img-fluid" src="~/images/@products.ProductImage2" alt="Second slide" width="50% \9" height="50% \9">
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img class="img-fluid" src="~/images/@products.ProductImage3" alt="Third slide" width="50% \9" height="50% \9">
+                                                        </div>
+                                                    </div>
+                                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span class="sr-only"></span>
+                                                    </a>
+                                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span class="sr-only"></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <br />
+                                                <h3>@products.ProductName</h3>
+                                                <br />
+                                                <p><strong>Product Description:</strong> @products.ProductDescription</p>
+                                                <p><strong>Processor:</strong> @products.ProductProc</p>
+                                                <p><strong>RAM:</strong> @products.ProductRam GB</p>
+                                                <p><strong>Storage:</strong> @products.ProductStorage GB</p>
+                                                <p><strong>Price:</strong> @products.ProductPrice</p>
+                                                <p><strong>Quantity:</strong> @products.ProductQuantity</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="carousel-item">
-                                        <img class="img-fluid" src="images/@products.ProductImage3" alt="Third slide" width= "50% \9" height= "50% \9" >
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Add to cart</button>
                                     </div>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only"></span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only"></span>
-                                </a>
                             </div>
                         </div>
-                        <div class="">
-                            <br />
-                            <h3>@products.ProductName</h3>
-                            <br />
-                            <p><strong>Product Description:</strong> @products.ProductDescription</p>
-                            <p><strong>Processor:</strong> @products.ProductProc</p>
-                            <p><strong>RAM:</strong> @products.ProductRam GB</p>
-                            <p><strong>Storage:</strong> @products.ProductStorage GB</p>
-                            <p><strong>Price:</strong> @products.ProductPrice</p>
-                            <p><strong>Quantity:</strong> @products.ProductQuantity</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Add to cart</button>
+                    }
                 </div>
             </div>
         </div>
     </div>
-}
-</center>
+</div>

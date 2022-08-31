@@ -1,0 +1,40 @@
+﻿body {
+}
+
+/**{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+section{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+}
+
+.container{
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0px 0px 20px #00000020;
+    padding: 20px;
+    border-radius: 8px;
+}
+*/
+.step{
+    display: none;
+}
+
+.step.active{
+    display: block;
+}
+
+#passwordWarning{
+    display: block;
+    color: red;
+}

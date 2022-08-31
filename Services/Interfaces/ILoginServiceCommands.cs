@@ -11,5 +11,6 @@ namespace Services.Interfaces
     public interface ILoginServiceCommands
     {
         Task<LoginResponse> Login(UserDTO userDto);
+        Task<LoginResponse> Register(UserDTO registerDTO);
     }
 }

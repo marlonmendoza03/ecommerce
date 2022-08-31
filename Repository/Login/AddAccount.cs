@@ -2,17 +2,17 @@
 using Repository.Interfaces;
 using Repository.RepositoryDTO;
 
-namespace Repository.Commands
+namespace Repository.Queries
 {
-    public partial class ProductCommandsRepository : IRepositoryCommands
+    public partial class GetUserPassword : ILoginRepositoryQuery
     {
-        public async Task<RepositoryResponse> AddProduct(Products products)
+        public async Task<RegisterRepositoryResponse> RegisterAccount(Users users)
         {
-            var response = new RepositoryResponse();
+            var response = new RegisterRepositoryResponse();
             try
             {
-                await _appDbContext.AddAsync(products);
-                await SaveChangesAsync();
+                await _appDbContext.AddAsync(users);
+                await _appDbContext.SaveChangesAsync();
 
                 response.ResultMessage = "Success";
             }

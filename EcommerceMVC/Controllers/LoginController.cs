@@ -1,5 +1,6 @@
 ﻿using EcommerceMVC.EcommerceDTOs;
 using EcommerceMVC.Exceptions;
+using EcommerceMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 using Services.ServicesDTO;
@@ -69,9 +70,53 @@ namespace EcommerceMVC.Controllers
             return Ok(response);
         }
 
+        [HttpGet("Login")]
         public IActionResult Login()
         {
-            return View();
+            return View("Login");
+        }
+
+        [HttpGet("Register")]
+        public IActionResult Register()
+        {
+            var newAccount = new RegisterRequest();
+            return View(newAccount);
+        }
+
+        [HttpPost("RegisterAccount")]
+        public async Task<IActionResult> RegisterAccount(RegisterRequest register)
+        {
+            CustomResponse customResponse = new CustomResponse();
+
+            if (register == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            var registerAccount = new UserDTO()
+            {
+                firstname = register.FirstName,
+                lastname = register.LastName,
+                email = register.Email,
+                username = register.Username,
+                password = register.Password,
+                roletype = "user",
+                isActive = true
+            };
+
+            var result = await _loginServiceCommands.Register(registerAccount);
+
+            if (result == null)
+            {
+                return customResponse.ClientErrorResponse();
+            }
+
+            if (result.ResultMessage == "Server Error")
+            {
+                return customResponse.ServerErrorResponse();
+            }
+
+            return RedirectToAction(nameof(Login));
         }
     }
 }
